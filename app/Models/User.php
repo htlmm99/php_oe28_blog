@@ -2,39 +2,52 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username',
+        'email',
+        'phone',
+        'role_id',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function roles()
+    {
+        $this->belongsTo(Role::class);
+    }
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function posts()
+    {
+        $this->hasMany(Post::class);
+    }
+
+    public function followers()
+    {
+        $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    public function following()
+    {
+        $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+
+    public function postFavorites()
+    {
+        $this->belongsToMany(Post::class, 'post_favorites');
+    }
+
+    public function votes()
+    {
+        $this->hasMany(Vote::class);
+    }
+
+    public function comments()
+    {
+        $this->hasMany(Comments::class);
+    }
 }
