@@ -17,5 +17,4 @@ return [
     'throttle' => 'Quá nhiều lần đăng nhập. Vui lòng thử lại sau.',
     'signin' => 'Đăng nhập',
     'signup' => 'Đăng ký',
-
 ];
