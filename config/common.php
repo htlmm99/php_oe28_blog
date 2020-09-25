@@ -1,4 +1,5 @@
 <?php
+
 return [
     'info' => [
         'about' => 'Nguyen Dinh Manh - Project 1 - Blog Social.',
