@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'locale'], function() {
+    Route::group(['namespace' => 'Client'], function() {
+    Route::get('/lang/{lang}', 'LangController@changeLanguage')->name('lang');
+    Route::get('/', 'HomeController@index');
+    });
 });
