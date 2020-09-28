@@ -7,7 +7,7 @@
    <!-- Title-->
    <title>DISTO - Blog</title>
    <!-- Favicon-->
-   <link rel="icon" href="{{ asset('/bower_components/disto_template/images/favicon.jpg') }}" tppabs="http://jellywp.com/disto-preview/img/favicon.jpg" type="image/x-icon">
+   <link rel="icon" href="{{ asset('/bower_components/disto_template/images/favicon.jpg') }}" type="image/x-icon">
    <!-- Stylesheets-->
    <link href="{{ asset('/bower_components/disto_template/css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
    <link href="{{ asset('/bower_components/disto_template/css/style.css') }}" rel="stylesheet" type="text/css" media="all" />
