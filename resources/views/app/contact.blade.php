@@ -4,7 +4,6 @@
     <div class="johannes-section johannes-section-margin-alt mt-3">
         <div class="container">
             <div class="section-head johannes-content-alt section-head-alt section-head-alt-page">
-                <h1 class="entry-title">Contact</h1>
             </div>
             <div class="entry-media mb-0">
                 <img width="1128" height="484" src="{{ asset(config('images.contact')) }}" class="attachment-johannes-page-1 size-johannes-page-1 wp-post-image" alt="">

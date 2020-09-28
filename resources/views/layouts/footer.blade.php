@@ -31,41 +31,8 @@
                         <h2>{{ trans('app.recent_posts') }}</h2>
                      </div>
                      <div>
-                        <!-- data test -->
-                        <ul class="feature-post-list recent-post-widget">
-                           <li>
-                              <a href="#" class="jl_small_format feature-image-link image_post featured-thumbnail" title="Round white dining table on brown hardwood">
-                                 <img width="120" height="120" src="http://jellywp.com/theme/disto/demo/wp-content/uploads/2019/02/roberto-nickson-1299738-unsplash-780x450.jpg" class="attachment-disto_small_feature size-disto_small_feature wp-post-image" alt="" />
-                                 <div class="background_over_image"></div>
-                              </a>
-                              <div class="item-details">
-                                <span class="meta-category-small">
-                                    <a class="post-category-color-text" style="background:#0015ff" href="#">Sports</a>
-                                </span>
-                                 <h3 class="feature-post-title"><a href="#">Round white dining table on brown hardwood</a></h3>
-                                 <span class="post-meta meta-main-img auto_image_with_date">
-                                    <span class="post-date"><i class="fa fa-clock-o"></i>Mar 10, 2019</span>
-                                </span>
-                              </div>
-                           </li>
-                           <li>
-                              <a href="#" class="jl_small_format feature-image-link image_post featured-thumbnail" title="People are enjoy the job that they love">
-                                 <img width="120" height="120" src="http://jellywp.com/theme/disto/demo/wp-content/uploads/2019/02/roberto-nickson-1299738-unsplash-780x450.jpg" class="attachment-disto_small_feature size-disto_small_feature wp-post-image" alt="" />
-                                 <div class="background_over_image"></div>
-                              </a>
-                              <div class="item-details">
-                                <span class="meta-category-small">
-                                    <a class="post-category-color-text" style="background:#0015ff" href="#">Business</a>
-                                </span>
-                                <h3 class="feature-post-title"><a href="#">People are enjoy the job that they love</a></h3>
-                                <span class="post-meta meta-main-img auto_image_with_date">
-                                    <span class="post-date"><i class="fa fa-clock-o"></i>Dec 24, 2016</span>
-                                </span>
-                              </div>
-                           </li>
-                        </ul>
-                        <!--end data test -->
-                     </div><span class="jl_none_space"></span>
+                     </div>
+                     <span class="jl_none_space"></span>
                   </div>
                </div>
             </div>
@@ -74,17 +41,6 @@
                   <div class="widget-title">
                      <h2>{{ trans('app.categories') }}</h2>
                   </div>
-                  <!-- data test -->
-                  <ul>
-                     <li class="cat-item cat-item-2">
-                        <a href="#" title="Sample category description goes here">Active</a>
-                        <span>11</span>
-                     </li>
-                     <li class="cat-item cat-item-3">
-                        <a href="#" title="Sample category description goes here">Business</a>
-                        <span>10</span>
-                     </li>
-                  </ul>
                </div>
             </div>
          </div>
