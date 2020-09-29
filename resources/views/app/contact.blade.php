@@ -1,12 +1,11 @@
 @extends('layouts.app')
-
 @section('main_content')
     <div class="johannes-section johannes-section-margin-alt mt-3">
         <div class="container">
             <div class="section-head johannes-content-alt section-head-alt section-head-alt-page">
             </div>
             <div class="entry-media mb-0">
-                <img width="1128" height="484" src="{{ asset(config('images.contact')) }}" class="attachment-johannes-page-1 size-johannes-page-1 wp-post-image" alt="">
+                <img src="{{ asset(config('images.contact')) }}" class="attachment-johannes-page-1 size-johannes-page-1 wp-post-image" alt="">
             </div>
         </div>
     </div>
@@ -45,5 +44,4 @@
             </div>
         </div>
     </div>
-
 @endsection

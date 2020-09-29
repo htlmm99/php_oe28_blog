@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('main_content')
     <div class="main_title_wrapper category_title_section jl_cat_img_bg">
         <div class="category_image_bg_image">
