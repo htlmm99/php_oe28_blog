@@ -35,6 +35,7 @@
         <script src="{{ asset('/bower_components/disto_template/js/aos.js') }}"></script>
         <script src="{{ asset('/bower_components/disto_template/js/slick.js') }}"></script>
         <script src="{{ asset('/bower_components/disto_template/js/custom.js') }}"></script>
-        <script src="{{ asset('/bower_components/Font-Awesome/js/fontawesome.js') }}"></script>
+        <script src="{{ asset('bower_components/jquery/dist/jquery.js') }}"></script>
+        <script src="{{ asset('/js/main.js') }}"></script>
     </body>
 </html>

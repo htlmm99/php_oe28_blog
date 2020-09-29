@@ -24,4 +24,7 @@ return [
     'post' => 'Bài đăng',
     'profile' => 'Thông tin cá nhân',
     'author' => 'Tác giả',
+    'your_phone' => 'Điện thoại của bạn',
+    'your_account' => 'Tài khoản của bạn',
+    'welcome' => 'Xin chào',
 ];

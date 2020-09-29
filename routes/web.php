@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'locale'], function() {
     Route::get('/lang/{lang}', 'LangController@changeLanguage')->name('lang');
-    Route::get('/', 'HomeController@index');
-    Route::get('/author', function() {
-        return view('user.profile');
-    });
+    Auth::routes();
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/contact', 'HomeController@contact');
 });
+
+
+
