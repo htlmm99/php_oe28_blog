@@ -19,4 +19,12 @@ return [
     'your_mess' => 'Your message',
     'submit' => 'Submit',
     'contact_desc' => 'Please use our official contact page if you have any questions. We would love to hear from you!',
+    'follower' => 'Follower',
+    'following' => 'Following',
+    'post' => 'Post',
+    'profile' => 'Profile',
+    'author' => 'Author',
+    'your_phone' => 'Your phone',
+    'your_account' => 'Your Account',
+    'welcome' => 'Welcome',
 ];
