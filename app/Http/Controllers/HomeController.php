@@ -15,4 +15,9 @@ class HomeController extends Controller
     {
         return view('app.contact');
     }
+
+    public function admin()
+    {
+        return view('admin.user');
+    }
 }

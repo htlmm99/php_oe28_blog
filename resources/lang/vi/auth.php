@@ -18,5 +18,8 @@ return [
     'login' => 'Đăng nhập',
     'register' => 'Đăng ký',
     'password' => 'Mật khẩu',
-    'remember_me' => 'Re',
+    'remember_me' => 'Ghi nhớ đăng nhập',
+    'forgot_password' => 'Bạn quên mật khẩu?',
+    'password_confirm' => 'Xác nhận mật khẩu',
+    'logout' => 'Đăng xuất',
 ];
