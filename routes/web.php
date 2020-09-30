@@ -20,5 +20,22 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('/contact', 'HomeController@contact');
 });
 
+Route::group([
+    'namespace' => 'Admin',
+    'prefix' => 'admin',
+    ], function () {
+        Route::get('/', 'AdminController@index')->name('admin');
+        Route::get('/user/{name}', 'UserController@index')->name('admin.index');
+        Route::patch('/edit/{id}', 'UserController@editAdmin')->name('admin.edit');
+        Route::delete('/user/{id}', 'UserController@destroy')->name('user.delete');
+});
 
+Route::group([
+    'namespace' => 'Admin',
+    'prefix' => 'user',
+    ], function () {
+        Route::get('/profile', 'UserController@edit')->name('user.profile');
+        Route::patch('/edit', 'UserController@update')->name('user.edit');
+        Route::get('/foryou', 'UserController@index')->name('user.foryou');
 
+});

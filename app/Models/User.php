@@ -18,6 +18,10 @@ class User extends Model implements AuthenticatableContract
         'password',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+    ];
+
     public function roles()
     {
         $this->belongsTo(Role::class);
