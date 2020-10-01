@@ -22,38 +22,38 @@ class User extends Model implements AuthenticatableContract
         'created_at' => 'datetime:Y-m-d',
     ];
 
-    public function roles()
+    public function role()
     {
-        $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class);
     }
 
     public function posts()
     {
-        $this->hasMany(Post::class);
+        return $this->hasMany(Post::class);
     }
 
     public function followers()
     {
-        $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
     }
 
     public function following()
     {
-        $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
 
     public function postFavorites()
     {
-        $this->belongsToMany(Post::class, 'post_favorites');
+        return $this->belongsToMany(Post::class, 'post_favorites');
     }
 
     public function votes()
     {
-        $this->hasMany(Vote::class);
+        return $this->hasMany(Vote::class);
     }
 
     public function comments()
     {
-        $this->hasMany(Comments::class);
+        return $this->hasMany(Comments::class);
     }
 }

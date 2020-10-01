@@ -21,11 +21,11 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             if (Auth()->user()->role()->name == config('common.role.admin')) {
 
-                return route('admin-home');
+                return route('admin');
             }
             elseif (Auth()::user()->role()->name == config('common.role.user')) {
 
-                return route('user-home');
+                return route('user');
             }
             else {
 

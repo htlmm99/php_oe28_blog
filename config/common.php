@@ -20,5 +20,5 @@ return [
     'category' => [
         'category_default' => 0,
     ],
-    'paginate_default' => 10,
+    'paginate_default' => 5,
 ];

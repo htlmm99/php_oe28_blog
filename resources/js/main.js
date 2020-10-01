@@ -1,4 +1,3 @@
-// Logout
-$('#btn-logout').on('click', function () {
+$('#btn-logout').on('click', function() {
     $('#logout-form').submit();
 });

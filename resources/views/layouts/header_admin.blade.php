@@ -20,7 +20,7 @@
                 <a class="dropdown-item" href="{{ route('lang', 'en') }}">{{ trans('app.english') }}<span class="border-menu"></span></a>
                 <a class="dropdown-item" href="{{ route('lang', 'vi') }}">{{ trans('app.vietnamese') }}<span class="border-menu"></span>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" id='btn-logout' href=""><span class="border-menu"></span></a>
+                <a class="dropdown-item" id='btn-logout'>{{ trans('auth.logout') }}<span class="border-menu"></span></a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
                 </form>

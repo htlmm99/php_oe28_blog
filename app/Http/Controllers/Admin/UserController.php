@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,7 @@ class UserController extends Controller
     public function index($name)
     {
         $role = Role::where('name', $name)->first();
-        $users = User::where('role_id', $role->id)->orderBy('username', 'asc')->get();
+        $users = User::where('role_id', $role->id)->orderBy('username', 'asc')->paginate(config('common.paginate_default'));
         return view('admin.user', compact('users', 'name'));
     }
 
@@ -50,15 +51,10 @@ class UserController extends Controller
         return view('user.profile', compact('user'));
     }
 
-    public function update(Request $request)
+    public function update(UserRequest $request)
     {
-        $request->validate([
-                'username' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255'],
-                'phone' => ['required', 'numeric'],
-            ]);
         if ($request->changePassword == config('common.user.change_pass')) {
-            $validatedData = $request->validate([
+            $request->validate([
                 'oldPassword' => ['required' , 'string', 'min:8'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'password_confirmation' => ['required', 'string', 'min:8', 'same:password'],
@@ -67,35 +63,35 @@ class UserController extends Controller
         try {
             $user = User::findOrFail(Auth()->user()->id);
             if ($user->email != $request->email) {
-                $checkEmail = User::where('email', $request->email)->first();
-                if ($checkEmail != null) {
-                    return redirect()->route('user.profile')->error('email', trans('app.message.has_email'));
-                }
-            }
-
-            if ($request->changePassword != config('common.user.change_pass'))
-            {
-                $user->update([
-                'username' => $request->username,
-                'email' => $request->email,
-                'phone' => $request->phone,
+                $request->validate([
+                    'email' => ['unique:users'],
                 ]);
             }
             else {
-                $oldPass = $request->oldPassword;
-                $checkPassword = User::where('email', $request->email)->where('password', bcrypt($oldPass))->first();
-                if ($checkPassword != null) {
-                    return redirect()->route('user.profile')->error('oldPassword', trans('app.message.fail'));
+                if ($request->changePassword != config('common.user.change_pass'))
+                {
+                    $user->update([
+                    'username' => $request->username,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    ]);
                 }
-                $user->update([
-                'username' => $request->username,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'password' => $request->password,
-                ]);
-            }
+                else {
+                    $oldPass = $request->oldPassword;
+                    $checkPassword = User::where('email', $request->email)->where('password', bcrypt($oldPass))->first();
+                    if ($checkPassword != null) {
+                        return redirect()->route('user.profile')->error('oldPassword', trans('app.message.fail'));
+                    }
+                    $user->update([
+                    'username' => $request->username,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'password' => $request->password,
+                    ]);
+                }
 
             return redirect()->route('user.profile')->with('message', trans('app.message.edit_success'));
+            }
         }
         catch (ModelNotFoundException $e) {
             return redirect()->route('user.profile')->with('error', trans('app.message.fail'));

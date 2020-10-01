@@ -2,7 +2,7 @@
 @section('main_content')
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4">{{ trans('app.user_management') }}</h1>
+        <h3 class="mt-4">{{ trans('app.user_management') }}</h3>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
             <li class="breadcrumb-item active">{{ $name }}</li>
@@ -83,6 +83,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $users->links() }}
             </div>
         </div>
     </div>

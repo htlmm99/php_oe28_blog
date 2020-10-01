@@ -60,6 +60,5 @@ return [
         'list_categories' => 'List Categories',
         'category_name' => 'Category Name',
         'category_parent' => 'Parent Category',
-        ]
-
+        ],
 ];

@@ -23,6 +23,7 @@ Route::group(['middleware' => 'locale'], function() {
 Route::group([
     'namespace' => 'Admin',
     'prefix' => 'admin',
+    'middleware' => 'check.admin',
     ], function () {
         Route::get('/', 'AdminController@index')->name('admin');
         Route::get('/user/{name}', 'UserController@index')->name('admin.index');
@@ -34,9 +35,10 @@ Route::group([
 Route::group([
     'namespace' => 'Admin',
     'prefix' => 'user',
+    'middleware' => 'auth',
     ], function () {
+        Route::get('/home', 'UserController@index')->name('user');
         Route::get('/profile', 'UserController@edit')->name('user.profile');
         Route::patch('/edit', 'UserController@update')->name('user.edit');
         Route::get('/foryou', 'UserController@index')->name('user.foryou');
-
 });
