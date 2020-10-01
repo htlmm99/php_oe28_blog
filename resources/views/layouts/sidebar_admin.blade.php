@@ -24,8 +24,8 @@
                 </a>
                 <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="layout-static.html">{{ trans('app.list_categories') }}</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">{{ trans('app.add_categories') }}</a>
+                        <a class="nav-link" href="{{ route('category.index') }}">{{ trans('app.list_categories') }}</a>
+                        <a class="nav-link" href="{{ route('category.create') }}">{{ trans('app.add_categories') }}</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">

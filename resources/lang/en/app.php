@@ -32,8 +32,6 @@ return [
     'list_user' => 'List Users',
     'list_admin' => 'List Admin',
     'post_management' => 'Post management',
-    'list_categories' => 'List Categories',
-    'add_categories' => 'Add Categories',
     'list_tags' => 'List Tags',
     'add_tags' => 'Add Tag',
     'review_posts' => 'Review Posts',
@@ -55,4 +53,13 @@ return [
         'edit_success' => 'Edit Success',
         'has_email' => 'Email already exists',
     ],
+    'category' => [
+        'add_category' => 'Add Category',
+        'edit_category' => 'Edit Category',
+        'category_management' => 'Category Management',
+        'list_categories' => 'List Categories',
+        'category_name' => 'Category Name',
+        'category_parent' => 'Parent Category',
+        ]
+
 ];

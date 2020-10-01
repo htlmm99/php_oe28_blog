@@ -17,4 +17,8 @@ return [
         'user' => 'user',
         'role_default' => 1,
     ],
+    'category' => [
+        'category_default' => 0,
+    ],
+    'paginate_default' => 10,
 ];

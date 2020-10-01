@@ -28,6 +28,7 @@ Route::group([
         Route::get('/user/{name}', 'UserController@index')->name('admin.index');
         Route::patch('/edit/{id}', 'UserController@editAdmin')->name('admin.edit');
         Route::delete('/user/{id}', 'UserController@destroy')->name('user.delete');
+        Route::resource('/category' , 'CategoryController');
 });
 
 Route::group([
