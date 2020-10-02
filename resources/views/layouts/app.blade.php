@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="manh">
         <!-- Title-->
-        <title>DISTO - Blog</title>
+        <title>Blog</title>
         <!-- Favicon-->
         <link rel="icon" href="{{ asset('/bower_components/disto_template/images/favicon.jpg') }}" type="image/x-icon">
         <!-- Stylesheets-->
