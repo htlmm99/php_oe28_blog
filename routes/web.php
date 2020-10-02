@@ -41,4 +41,5 @@ Route::group([
         Route::get('/profile', 'UserController@edit')->name('user.profile');
         Route::patch('/edit', 'UserController@update')->name('user.edit');
         Route::get('/foryou', 'UserController@index')->name('user.foryou');
+        Route::resource('/post' , 'PostController');
 });

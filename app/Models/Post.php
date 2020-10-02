@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'title',
         'content',
@@ -19,6 +17,11 @@ class Post extends Model
         'user_id',
         'admin_id',
     ];
+
+    public function setSlugAttribute($slug)
+    {
+        $this->attributes['slug'] = str_slug($slug);
+    }
 
     public function category()
     {

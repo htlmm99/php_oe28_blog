@@ -91,10 +91,10 @@
                     </div>
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4 float-left">
-                            <button id='edit-user' type="submit" class="btn btn-primary">
+                            <button id='edit-user' type="submit" class="btn wpforms-submit">
                             {{ trans('app.edit') }}
                             </button>
-                            <button class="btn btn-danger">
+                            <button class="btn wpforms-submit">
                             <a class="btn" href="">{{ trans('app.cancel') }}</a>
                             </button>
                         </div>

@@ -21,4 +21,7 @@ return [
         'category_default' => 0,
     ],
     'paginate_default' => 5,
+    'post' => [
+        'admin_default' => 0,
+    ],
 ];

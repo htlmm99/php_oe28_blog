@@ -61,4 +61,13 @@ return [
         'category_name' => 'Category Name',
         'category_parent' => 'Parent Category',
         ],
+    'post' => [
+        'add_post' => 'Add Post',
+        'title' => 'Title',
+        'category' => 'Category',
+        'select_category' => 'Select Category',
+        'content' => 'Content',
+        'tag' => 'Tag',
+        'thumbail' => 'Thumbnail',
+     ],
 ];

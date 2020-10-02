@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Requests\CategoryRequest;
+use App\Helpers\Recusive;
 
 class CategoryController extends Controller
 {
     private $htmlOption = '';
-    private $data;
+    private $categories;
     /**
      * Display a listing of the resource.
      *
@@ -31,8 +32,8 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $this->data = $categories;
-        $htmlOption = $this->categoryRecusive($parentId = '');
+        $recusive = new Recusive($categories);
+        $htmlOption = $recusive->categoryRecusive($parentId = '');
 
         return view('admin.category_add', compact('htmlOption'));
     }
@@ -80,8 +81,8 @@ class CategoryController extends Controller
             return redirect()->route('category.edit')->with('error', trans('message.fail'));
         }
         $categories = Category::all();
-        $this->data = $categories;
-        $htmlOption = $this->categoryRecusive($parentId = $category->parent_id);
+        $recusive = new Recusive($categories);
+        $htmlOption = $recusive->categoryRecusive($parentId = $category->parent_id);
 
         return view('admin.category_edit', compact('category', 'htmlOption'));
     }
@@ -128,23 +129,4 @@ class CategoryController extends Controller
 
         return redirect()->route('category.index')->with('message', trans('app.message.delete_success'));
     }
-
-    public function categoryRecusive($parentId, $id = 0, $text = '')
-    {
-        foreach ($this->data as $value) {
-            if ($value['parent_id'] == $id) {
-                if ( !empty($parentId) && $parentId == $value['id']) {
-                    $this->htmlOption .= "<option selected value='" . $value['id'] . "'>" . $text . $value['name'] . "</option>";
-                } else {
-                    $this->htmlOption .= "<option value='" . $value['id'] . "'>" . $text . $value['name'] . "</option>";
-                }
-
-                $this->categoryRecusive($parentId, $value['id'], $text. '--');
-            }
-        }
-
-        return $this->htmlOption;
-
-    }
-
 }

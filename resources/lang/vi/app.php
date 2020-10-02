@@ -43,7 +43,7 @@ return [
     'edit' => 'Sửa',
     'change_password' => 'Thay đổi mật khẩu',
     'old_password' => 'Mật khẩu cũ',
-    'cancel' => 'Không',
+    'cancel' => 'Quay lại',
     'username' => 'Tên đăng nhập',
     'phone' => 'Điện thoại',
     'message' => [
