@@ -10,9 +10,7 @@
                 </div>
               </div>
             </div>
-
             @include('layouts.sidebar')
-
           </div>
         </div>
       </div>
