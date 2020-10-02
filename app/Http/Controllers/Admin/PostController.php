@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Recusive;
@@ -13,8 +14,6 @@ use App\Helpers\Process;
 
 class PostController extends Controller
 {
-    private $htmlOption = '';
-    private $categories;
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +21,8 @@ class PostController extends Controller
      */
     public function index()
     {
-
+        $posts = Post::latest()->paginate(config('common.paginate_default'));
+        return view('admin.post', compact('posts'));
     }
 
     /**
@@ -46,30 +46,22 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-
-
-
-
-        $data = [
+        $post = [
             'title' => $request->title,
-            'slug' => str_slug($request->title),
+            'slug' => $request->title,
             'user_id' => Auth::id(),
             'content' => Process::addDivToContent($request->content),
             'category_id' => $request->category_id,
             'admin_id' => config('common.post.admin_default'),
+            'status' => config('common.post.status_waiting'),
         ];
-        if (!$request->thumbnail) {
-            $data['thumbnail'] = strpos($request->request->get('content'), '<img') ?
-                explode('"', explode('src="', $request->request->get('content'))[1])[0] :
-                config('company.default_post_img');
-        } else {
-            $thumbnail = $request->thumbnail;
-            $filename = uniqid() . '-' . $thumbnail->getClientOriginalName();
-            $thumbnail->move('storage/', $filename);
-            $data['thumbnail'] = "/storage/$filename";
-        }
-        $post = Post::create($data);
-        //return redirect()->route('post.waiting');
+        $fileName = $request->thumbnail->getClientOriginalName();
+        $request->thumbnail->move('storage/', $fileName);
+        $post['thumbnail'] = "storage/".$fileName;
+        $post = Post::create($post);
+        $this->storeTags($post->id, $request->tag);
+
+        return redirect()->route('user')->with('message', trans('app.message.add_success'));
     }
 
     /**
@@ -117,21 +109,26 @@ class PostController extends Controller
         //
     }
 
-    public function categoryRecusive($parentId, $id = 0, $text = '')
+    public function reject()
     {
-        foreach ($this->categories as $value) {
-            if ($value['parent_id'] == $id) {
-                if ( !empty($parentId) && $parentId == $value['id']) {
-                    $this->htmlOption .= "<option selected value='" . $value['id'] . "'>" . $text . $value['name'] . "</option>";
-                } else {
-                    $this->htmlOption .= "<option value='" . $value['id'] . "'>" . $text . $value['name'] . "</option>";
-                }
 
-                $this->categoryRecusive($parentId, $value['id'], $text. '--');
+    }
+
+    public function accept()
+    {
+
+    }
+
+    public function storeTags($postId, $tags)
+    {
+        $tags = explode(',', $tags);
+        foreach ($tags as $tag) {
+            $tag = trim($tag);
+            $checkTag = Tag::where('name', $tag)->first();
+            if (!$checkTag) {
+                $checkTag = Tag::create(['name' => $tag]);
             }
+            $checkTag->posts()->attach($postId);
         }
-
-        return $this->htmlOption;
-
     }
 }

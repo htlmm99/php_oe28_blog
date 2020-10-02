@@ -27,7 +27,7 @@ class PostRequest extends FormRequest
             'title' => 'bail|required|min:10',
             'category_id' => 'required|nullable',
             'content' => 'bail|required|min:50',
-            //'thumbnail' => 'mimes:jpg,png',
+            'thumbnail' => 'required',
         ];
     }
 }
