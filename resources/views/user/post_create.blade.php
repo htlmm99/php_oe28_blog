@@ -14,7 +14,7 @@
           <h1 class="entry-title">{{ trans('app.post.add_post') }}</h1>
           <div class="entry-content entry-single clearfix">
             <div class="wpforms-container wpforms-container-full" id="wpforms-1392">
-              <form id="post-form" class="wpforms-validate wpforms-form" method="post" action="{{ route('post.store') }}">
+              <form id="post-form" class="wpforms-validate wpforms-form" method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="wpforms-field-container">
                   <div id="wpforms-1392-field_0-container" class="wpforms-field wpforms-field-name" data-field-id="0">
@@ -42,7 +42,7 @@
                   </div>
                   <div id="wpforms-1392-field_0-container" class="wpforms-field wpforms-field-name" data-field-id="0">
                     <label class="wpforms-field-label" for="wpforms-1392-field_0">{{ trans('app.post.content') }}<span class="wpforms-required-label">*</span></label>
-                    <textarea name="content" class="ckeditor" id="editor" required="">{{ old('content') }}</textarea>
+                    <textarea name="content" class="ckeditor" id="content" required="">{{ old('content') }}</textarea>
                     @error('content')
                     <p class="text-danger mb-0 mt-2 ml-1">
                       {{ $message }}
@@ -82,3 +82,13 @@
   </div>
 </div>
 @endsection
+@push('scripts')
+    <script src="{{ asset('/bower_components/ckeditor/ckeditor.js') }}"></script>
+    <script>
+        //CKEditor.replace('editor');
+        CKEDITOR.replace( 'content', {
+            filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
+        } );
+    </script>
+    @include('ckfinder::setup')
+@endpush

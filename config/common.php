@@ -23,5 +23,8 @@ return [
     'paginate_default' => 5,
     'post' => [
         'admin_default' => 0,
+        'status_waiting' => 0,
+        'status_rejected' => 1,
+        'status_accepted' => 2,
     ],
 ];

@@ -14,13 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'locale'], function() {
-    Route::get('/lang/{lang}', 'LangController@changeLanguage')->name('lang');
-    Auth::routes();
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/contact', 'HomeController@contact');
-});
+            Auth::routes();
 
-Route::group([
+    Route::group(['namespace' => 'Client'], function() {
+        Route::get('/lang/{lang}', 'LangController@changeLanguage')->name('lang');
+        Route::get('/home', 'HomeController@index')->name('home');
+        Route::get('/contact', 'HomeController@contact');
+        Route::get('/post/{id}', 'PostController@show')->name('post.show');
+    });
+    Route::group([
     'namespace' => 'Admin',
     'prefix' => 'admin',
     'middleware' => 'check.admin',
@@ -30,9 +32,9 @@ Route::group([
         Route::patch('/edit/{id}', 'UserController@editAdmin')->name('admin.edit');
         Route::delete('/user/{id}', 'UserController@destroy')->name('user.delete');
         Route::resource('/category' , 'CategoryController');
-});
+    });
 
-Route::group([
+    Route::group([
     'namespace' => 'Admin',
     'prefix' => 'user',
     'middleware' => 'auth',
@@ -42,4 +44,6 @@ Route::group([
         Route::patch('/edit', 'UserController@update')->name('user.edit');
         Route::get('/foryou', 'UserController@index')->name('user.foryou');
         Route::resource('/post' , 'PostController');
+    });
 });
+
