@@ -15,8 +15,8 @@
                     <div class="jl_top_bar_right menu-primary-container navigation_wrapper">
                         <ul id="jl_top_menu" class="jl_main_menu">
                             <li><span class="jl_current_title">{{ trans('app.current_date') }}</span></li>
-                            <li class="menu-item menu-item-3602"><a href="#">{{ trans('app.english') }}<span class="border-menu"></span></a></li>
-                            <li class="menu-item menu-item-3606"><a href="#">{{ trans('app.vietnamese') }}<span class="border-menu"></span></a></li>
+                            <li class="menu-item menu-item-3602"><a href="{{ route('lang', 'en') }}">{{ trans('app.english') }}<span class="border-menu"></span></a></li>
+                            <li class="menu-item menu-item-3606"><a href="{{ route('lang', 'vi') }}">{{ trans('app.vietnamese') }}<span class="border-menu"></span></a></li>
                         </ul>
                     </div>
                 </div>

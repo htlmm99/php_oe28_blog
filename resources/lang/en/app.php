@@ -20,5 +20,10 @@ return [
     'your_mess' => 'Your message',
     'submit' => 'Submit',
     'contact_desc' => 'Please use our official contact page if you have any questions. We would love to hear from you!',
+    'follower' => 'Follower',
+    'following' => 'Following',
+    'post' => 'Post',
+    'profile' => 'Profile',
+    'author' => 'Author',
     'copyright' => 'Copyright 2019 Jellywp. All Rights Reserved Powered by Jellywp',
 ];
