@@ -1,10 +1,9 @@
 @extends('layouts.app')
-
 @section('main_content')
     <div class="johannes-section johannes-section-margin-alt mt-3">
         <div class="container">
             <div class="section-head johannes-content-alt section-head-alt section-head-alt-page">
-                <h1 class="entry-title">{{ trans('app.contact') }}</h1>
+                <h3 class="entry-title">{{ trans('app.contact') }}</h3>
             </div>
             <div class="entry-media mb-0">
                 <img src="{{ asset(config('images.contact')) }}" class="attachment-johannes-page-1 size-johannes-page-1 wp-post-image" alt="">

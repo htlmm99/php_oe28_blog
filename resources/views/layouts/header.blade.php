@@ -6,18 +6,16 @@
                 <div class="col-md-12">
                     <div class="menu-primary-container navigation_wrapper">
                         <ul id="jl_top_menu" class="jl_main_menu">
-                            <li class="menu-item menu-item-home current-menu-item page_item page-item-4212 current_page_item menu-item-4461"><a href="{{ route('home') }}" aria-current="page">{{ trans('app.home') }}<span class="border-menu"></span></a>
-                            </li>
+                            <li class="menu-item menu-item-home current-menu-item page_item page-item-4212 current_page_item menu-item-4461"><a href="{{ route('home') }}" aria-current="page">{{ trans('app.home') }}<span class="border-menu"></span></a></li>
                             @if (!Auth::check())
-                            <li class="menu-item menu-item-3602"><a href="{{ route('login') }}">{{ trans('auth.login') }}<span class="border-menu"></span></a>
-                            </li>
-                            <li class="menu-item menu-item-3606"><a href="{{ route('register') }}">{{ trans('auth.register') }}<span class="border-menu"></span></a>
-                            </li>
+                            <li class="menu-item menu-item-3602"><a href="{{ route('login') }}">{{ trans('auth.login') }}<span class="border-menu"></span></a></li>
+                            <li class="menu-item menu-item-3606"><a href="{{ route('register') }}">{{ trans('auth.register') }}<span class="border-menu"></span></a></li>
                             @else
-                            <li class="menu-item menu-item-3602"><a href="">{{ trans('app.welcome') }}  : {{ Auth()->user()->username}}<span class="border-menu"></span></a>
-                            <li class="menu-item menu-item-3606"><a id='btn-logout' href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ trans('auth.logout') }}<span class="border-menu"></span></a>
+                            <li class="menu-item menu-item-3602"><a href="">{{ trans('app.welcome') }}  : {{ Auth()->user()->username}}<span class="border-menu"></span></a></li>
+                            <li class="menu-item menu-item-3606">
+                                <a id='btn-logout' >{{ trans('auth.logout') }}<span class="border-menu"></span></a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                @csrf
+                                    @csrf
                                 </form>
                             </li>
                             @endif
@@ -26,12 +24,9 @@
                     <!-- Data test -->
                     <div class="jl_top_bar_right menu-primary-container navigation_wrapper">
                         <ul id="jl_top_menu" class="jl_main_menu">
-                            <li><span class="jl_current_title">{{ trans('app.current_date') }}</span>{{ $today ?? '' }}
-                            </li>
-                            <li class="menu-item menu-item-3602"><a href="{{ route('lang', 'en') }}">{{ trans('app.english') }}<span class="border-menu"></span></a>
-                            </li>
-                            <li class="menu-item menu-item-3606"><a href="{{ route('lang', 'vi') }}">{{ trans('app.vietnamese') }}<span class="border-menu"></span></a>
-                            </li>
+                            <li><span class="jl_current_title">{{ trans('app.current_date') }}</span>{{ $today ?? '' }}</li>
+                            <li class="menu-item menu-item-3602"><a href="{{ route('lang', 'en') }}">{{ trans('app.english') }}<span class="border-menu"></span></a></li>
+                            <li class="menu-item menu-item-3606"><a href="{{ route('lang', 'vi') }}">{{ trans('app.vietnamese') }}<span class="border-menu"></span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -56,41 +51,18 @@
                     <!-- main menu -->
                     <div class="menu-primary-container navigation_wrapper col-md-8">
                         <ul id="mainmenu" class="jl_main_menu">
-                            <li class="menu-item"> <a href="{{ route('home') }}">{{ trans('app.home') }}<span class="border-menu"></span></a>
-                            </li>
-                            <li class="menu-item menu-item-has-children"><a href="#">{{ trans('app.categories') }}<span class="border-menu"></span></a>
-                                <!-- Data test -->
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-has-children"> <a href="">Quan diem<span class="border-menu"></span></a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item"><a href="post-layout-1.html" tppabs="http://jellywp.com/disto-preview/post-layout-1.html">Post layout 1<span class="border-menu"></span></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item menu-item-has-children"> <a href="#">Truyen cam hung<span class="border-menu"></span></a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item"><a href="post-format-1.html" tppabs="http://jellywp.com/disto-preview/post-format-1.html">Post format standard<span class="border-menu"></span></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item"><a href="author.html" tppabs="http://jellywp.com/disto-preview/author.html">Chinh tri<span class="border-menu"></span></a>
-                                    </li>
-                                </ul>
-                                <!--end data test -->
-                            </li>
-                            <li class="menu-item"><a href="gaming.html" tppabs="http://jellywp.com/disto-preview/gaming.html">{{ trans('app.top_members') }}<span class="border-menu"></span></a>
-                            </li>
-                            <li class="menu-item"><a href="/contact">{{ trans('app.contact') }}<span class="border-menu"></span></a>
-                            </li>
+                            <li class="menu-item"> <a href="{{ route('home') }}">{{ trans('app.home') }}<span class="border-menu"></span></a></li>
+                            <li class="menu-item menu-item-has-children"><a href="#">{{ trans('app.categories') }}<span class="border-menu"></span></a></li>
+                            <li class="menu-item"><a href="">{{ trans('app.top_members') }}<span class="border-menu"></span></a></li>
+                            <li class="menu-item"><a href="">{{ trans('app.contact') }}<span class="border-menu"></span></a></li>
                         </ul>
                     </div>
                     <!-- end main menu -->
                     <div class="search_header_menu col-md-4">
                         <form method="get" class="searchform_theme" action="#">
-          <input type="text" placeholder="Search..." value="" name="s" class="search_btn" />
-          <button type="submit" class="button"><i class="fa fa-search"></i>
-          </button>
-        </form>
+                            <input type="text" placeholder="{{ trans('app.search') }}" value="" name="s" class="search_btn">
+                            <button id="center" type="submit" class="button"><i class="fa fa-search float-left"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>

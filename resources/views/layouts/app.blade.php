@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="manh">
         <!-- Title-->
-        <title>DISTO - Blog</title>
+        <title>Blog</title>
         <!-- Favicon-->
         <link rel="icon" href="{{ asset('/bower_components/disto_template/images/favicon.jpg') }}" type="image/x-icon">
         <!-- Stylesheets-->
@@ -36,6 +36,6 @@
         <script src="{{ asset('/bower_components/disto_template/js/slick.js') }}"></script>
         <script src="{{ asset('/bower_components/disto_template/js/custom.js') }}"></script>
         <script src="{{ asset('bower_components/jquery/dist/jquery.js') }}"></script>
-        <script src="{{ asset('/js/main.js') }}"></script>
+        <script src="{{ asset('/bower_components/disto_template/admin/js/main.js') }}"></script>
     </body>
 </html>
