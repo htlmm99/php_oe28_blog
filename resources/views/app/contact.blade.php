@@ -3,6 +3,7 @@
     <div class="johannes-section johannes-section-margin-alt mt-3">
         <div class="container">
             <div class="section-head johannes-content-alt section-head-alt section-head-alt-page">
+                <h3 class="entry-title">{{ trans('app.contact') }}</h3>
             </div>
             <div class="entry-media mb-0">
                 <img src="{{ asset(config('images.contact')) }}" class="attachment-johannes-page-1 size-johannes-page-1 wp-post-image" alt="">
@@ -29,7 +30,7 @@
                                             <input type="email" id="wpforms-1392-field_1" class="wpforms-field-large wpforms-field-required" name="wpforms[fields][1]" required="">
                                         </div>
                                         <div id="wpforms-1392-field_2-container" class="wpforms-field wpforms-field-textarea" data-field-id="2">
-                                            <label class="wpforms-field-label" for="wpforms-1392-field_2">{{ trans('app.mess') }}<span class="wpforms-required-label">*</span></label>
+                                            <label class="wpforms-field-label" for="wpforms-1392-field_2">{{ trans('app.your_mess') }}<span class="wpforms-required-label">*</span></label>
                                             <textarea id="wpforms-1392-field_2" class="wpforms-field-large wpforms-field-required" name="wpforms[fields][2]" required=""></textarea>
                                         </div>
                                     </div>

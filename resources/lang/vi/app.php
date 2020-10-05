@@ -20,5 +20,10 @@ return [
     'your_mess' => 'Tin nhắn của bạn',
     'submit' => 'Xác nhận',
     'contact_desc' => 'Vui lòng sử dụng trang liên hệ chính thức của chúng tôi nếu bạn có bất kỳ câu hỏi nào. Chúng tôi rất mong nhận được hồi âm từ bạn!',
+    'follower' => 'Người theo dõi',
+    'following' => 'Đang theo dõi',
+    'post' => 'Bài đăng',
+    'profile' => 'Thông tin cá nhân',
+    'author' => 'Tác giả',
     'copyright' => 'Bản quyền 2019 Jellywp. Mọi quyền được bảo lưu bởi Jellywp',
 ];

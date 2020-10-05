@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-md-12 main_title_col">
                         <div class="jl_cat_mid_title">
-                            <h2 class="categories-title">{{ trans('app.tags') }}</h2>
+                            <h3 class="categories-title">{{ trans('app.tags') }}</h3>
                         </div>
                     </div>
                 </div>
