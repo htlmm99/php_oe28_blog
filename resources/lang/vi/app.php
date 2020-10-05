@@ -13,6 +13,7 @@ return [
     'community' => 'Cộng đồng',
     'english' => 'Tiếng Anh',
     'vietnamese' => 'Tiếng Việt',
+    'search' => 'Tìm kiếm',
     'search_results' => 'Kết quả tìm kiếm của :',
     'your_name' => 'Tên của bạn',
     'your_email' => 'Email của bạn',
@@ -27,4 +28,5 @@ return [
     'your_phone' => 'Điện thoại của bạn',
     'your_account' => 'Tài khoản của bạn',
     'welcome' => 'Xin chào',
+    'copyright' => 'Bản quyền 2019 Jellywp. Mọi quyền được bảo lưu bởi Jellywp',
 ];

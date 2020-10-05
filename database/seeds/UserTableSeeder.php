@@ -18,12 +18,12 @@ class UserTableSeeder extends Seeder
             'phone' => '0378046304',
             'role_id' => 2,
             ],
-            'email' => 'hungyen1111@gmail.com',
+            ['email' => 'hungyen1111@gmail.com',
             'password' => bcrypt('manh123456'),
             'username' => 'Nguyen Dinh Manh',
             'phone' => '0378046304',
             'role_id' => 1,
-            ]
+            ],
         );
     }
 }
