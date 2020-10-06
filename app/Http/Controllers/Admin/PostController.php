@@ -20,7 +20,8 @@ class PostController extends Controller
      */
     public function index()
     {
-
+        $posts = Post::latest()->paginate(config('common.paginate_default'));
+        return view('admin.post', compact('posts'));
     }
 
     /**
@@ -104,5 +105,15 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function reject()
+    {
+
+    }
+
+    public function accept()
+    {
+
     }
 }

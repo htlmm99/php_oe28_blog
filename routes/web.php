@@ -20,7 +20,7 @@ Route::group(['middleware' => 'locale'], function() {
         Route::get('/lang/{lang}', 'LangController@changeLanguage')->name('lang');
         Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/contact', 'HomeController@contact');
-        Route::get('/post/{id}', 'PostController@show')->name('post.show');
+        Route::get('/post', 'PostController@show')->name('post.show');
     });
     Route::group([
     'namespace' => 'Admin',
@@ -32,6 +32,9 @@ Route::group(['middleware' => 'locale'], function() {
         Route::patch('/edit/{id}', 'UserController@editAdmin')->name('admin.edit');
         Route::delete('/user/{id}', 'UserController@destroy')->name('user.delete');
         Route::resource('/category' , 'CategoryController');
+        Route::patch('/post/{id}', 'PostController@accept')->name('admin.post.accept');
+        Route::patch('/post{id}', 'PostController@reject')->name('admin.post.reject');
+        Route::get('/post', 'PostController@index')->name('admin.post');
     });
 
     Route::group([
@@ -39,11 +42,11 @@ Route::group(['middleware' => 'locale'], function() {
     'prefix' => 'user',
     'middleware' => 'auth',
     ], function () {
-        Route::get('/home', 'UserController@index')->name('user');
+        Route::get('/home', 'UserController@indexHome')->name('user');
         Route::get('/profile', 'UserController@edit')->name('user.profile');
         Route::patch('/edit', 'UserController@update')->name('user.edit');
         Route::get('/foryou', 'UserController@index')->name('user.foryou');
-        Route::resource('/post' , 'PostController');
+        Route::resource('/post' , 'PostController')->except('show');
     });
 });
 

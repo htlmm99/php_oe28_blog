@@ -26,5 +26,6 @@ return [
         'status_waiting' => 0,
         'status_rejected' => 1,
         'status_accepted' => 2,
+        'paginate' => 9,
     ],
 ];

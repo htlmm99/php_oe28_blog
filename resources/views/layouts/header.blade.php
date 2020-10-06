@@ -12,7 +12,7 @@
                             <li class="menu-item menu-item-3606"><a href="{{ route('register') }}">{{ trans('auth.register') }}<span class="border-menu"></span></a></li>
                             @else
                             <li class="menu-item menu-item-3602"><a href="">{{ trans('app.welcome') }}  : {{ Auth()->user()->username}}<span class="border-menu"></span></a></li>
-                            <li class="menu-item menu-item-3606"><a id='btn-logout' href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ trans('auth.logout') }}<span class="border-menu"></span></a>
+                            <li class="menu-item menu-item-3606"><a id='btn-logout' href="">{{ trans('auth.logout') }}<span class="border-menu"></span></a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
                             </form>
@@ -77,7 +77,7 @@
                 <div class="search_header_menu col-md-4">
                     <form method="get" class="searchform_theme" action="#">
                         <input type="text" placeholder="Search..." value="" name="s" class="search_btn" />
-                        <button type="submit" class="button"><i class="fa fa-search"></i>
+                        <button type="submit" class="button"><i id='search' class="fa fa-search float-left"></i>
                         </button>
                     </form>
                 </div>

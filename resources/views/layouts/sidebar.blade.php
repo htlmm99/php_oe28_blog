@@ -17,7 +17,7 @@
         <div class="index">
           <a>
             <span class="count">55</span>
-            <span><strong>{{ trans('app.post') }}</strong></span>
+            <span><strong>{{ trans('app.posts') }}</strong></span>
           </a>
         </div>
       </div>
