@@ -111,11 +111,4 @@ class UserController extends Controller
 
         return redirect()->route('admin.index', 'user')->with('message', trans('app.message.delete_success'));
     }
-
-    public function indexHome()
-    {
-        $author = Auth()->user();
-        $posts = Post::where('user_id', $author->id)->get(); //paginate(config('common.post.paginate'));
-        return view('user.home', compact('posts', 'author'));
-    }
 }

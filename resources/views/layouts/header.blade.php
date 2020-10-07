@@ -16,6 +16,7 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
                             </form>
+                            <li class="menu-item menu-item-3602"><a href="{{ route('post.create') }}">{{ trans('app.post.create') }}<span class="border-menu"></span></a></li>
                         </li>
                         @endif
                     </ul>
