@@ -24,7 +24,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', 'regex:/gmail'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => ['required', 'numeric'],
         ];

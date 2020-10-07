@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,8 +18,9 @@ Route::group(['middleware' => 'locale'], function() {
     Route::group(['namespace' => 'Client'], function() {
         Route::get('/lang/{lang}', 'LangController@changeLanguage')->name('lang');
         Route::get('/home', 'HomeController@index')->name('home');
-        Route::get('/contact', 'HomeController@contact');
+        Route::get('/contact', 'HomeController@contact')->name('contact');
         Route::get('/post', 'PostController@show')->name('post.show');
+        Route::get('/user/{emailName}', 'HomeController@userHome')->name('user.home');
     });
     Route::group([
     'namespace' => 'Admin',
@@ -42,7 +42,6 @@ Route::group(['middleware' => 'locale'], function() {
     'prefix' => 'user',
     'middleware' => 'auth',
     ], function () {
-        Route::get('/home', 'UserController@indexHome')->name('user');
         Route::get('/profile', 'UserController@edit')->name('user.profile');
         Route::patch('/edit', 'UserController@update')->name('user.edit');
         Route::get('/foryou', 'UserController@index')->name('user.foryou');

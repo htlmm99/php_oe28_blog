@@ -73,6 +73,9 @@ return [
         'list_posts' => 'List Posts',
         'author' => 'Author',
         'like' => 'Like',
+        'create' => 'Create Post',
+        'related' => 'Related Posts',
      ],
      'comment' => 'Comment',
+     'of' => 'Of',
 ];
