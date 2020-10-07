@@ -15,11 +15,16 @@ class PostController extends Controller
         if (!$post) {
             abort(403);
         }
-        elseif ($post->status != config('common.post.status_accepted') && Auth::user()->id != $post->user_id && Auth::user()->role_id != config('common.role.admin')) {
+        elseif ($post->status != config('common.post.status_accepted') && !Auth::check() && Auth::user()->id != $post->user_id && Auth::user()->role->name != config('common.role.admin')) {
             abort(404);
         }
         else {
-            return view('app.post_show', compact('post'));
+            $post->load('tags');
+            $author = $post->user;
+            $relatedPosts = $post->category->posts()->where('id', '!=', $post->id)->orderBy('created_at', 'asc')->take(config('common.post.related_posts'))->get();
+            $recentPosts = $author->posts()->where('id', '!=', $post->id)->orderBy('created_at', 'asc')->take(config('common.post.recent_author'))->get();
+
+            return view('app.post_show', compact('post', 'relatedPosts', 'recentPosts', 'author'));
         }
     }
 }

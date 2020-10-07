@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Recusive;
@@ -55,9 +56,10 @@ class PostController extends Controller
             'status' => config('common.post.status_waiting'),
         ];
         $fileName = $request->thumbnail->getClientOriginalName();
-        $request->thumbnail->storeAs('storage/', $fileName);
+        $request->thumbnail->move('storage/', $fileName);
         $post['thumbnail'] = "storage/".$fileName;
         $post = Post::create($post);
+        $this->storeTags($post->id, $request->tag);
 
         return redirect()->route('user')->with('message', trans('app.message.add_success'));
     }
@@ -115,5 +117,18 @@ class PostController extends Controller
     public function accept()
     {
 
+    }
+
+    public function storeTags($postId, $tags)
+    {
+        $tags = explode(',', $tags);
+        foreach ($tags as $tag) {
+            $tag = trim($tag);
+            $checkTag = Tag::where('name', $tag)->first();
+            if (!$checkTag) {
+                $checkTag = Tag::create(['name' => $tag]);
+            }
+            $checkTag->posts()->attach($postId);
+        }
     }
 }

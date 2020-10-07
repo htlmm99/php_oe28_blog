@@ -27,5 +27,7 @@ return [
         'status_rejected' => 1,
         'status_accepted' => 2,
         'paginate' => 9,
+        'related_posts' => 4,
+        'recent_author'=> 6,
     ],
 ];

@@ -73,6 +73,12 @@ return [
         'list_posts' => 'List Posts',
         'author' => 'Author',
         'like' => 'Like',
+        'create' => 'Create Post',
+        'related' => 'Related Posts',
+        'accepted' => 'Accepted',
+        'waiting' => 'Waiting',
+        'rejected' => 'Rejected',
      ],
      'comment' => 'Comment',
+     'of' => 'Of',
 ];

@@ -40,7 +40,7 @@ class Post extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'tag_post');
+        return $this->belongsToMany(Tag::class, 'post_tag');
     }
 
     public function votes()
