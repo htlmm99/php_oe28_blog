@@ -6,7 +6,7 @@
         <meta name="author" content="manh">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <!-- Title-->
-        <title>DISTO - Blog</title>
+        <title>Blog</title>
         <!-- Favicon-->
         <link rel="icon" href="{{ asset('/bower_components/disto_template/images/favicon.jpg') }}" type="image/x-icon">
         <!-- Stylesheets-->
@@ -40,7 +40,7 @@
         <script src="{{ asset('/bower_components/disto_template/js/custom.js') }}"></script>
         <script src="{{ asset('/bower_components/disto_template/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('/bower_components/disto_template/admin/js/main.js') }}"></script>
-        <script src="{{ asset('bower_components/jquery/dist/jquery.js') }}"></script>
+        <script src="{{ asset('/bower_components/jquery/dist/jquery.js') }}"></script>
         <script src="{{ asset('/bower_components/disto_template/js/sweetalert2.js') }}"></script>
     </body>
 </html>
