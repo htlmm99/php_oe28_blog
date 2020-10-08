@@ -9,7 +9,7 @@
                         <div class="widget_jl_wrapper about_widget_content">
                             <span class="jl_none_space"></span>
                             <div class="widget-title">
-                                <h2>{{ trans('app.about_us') }}</h2>
+                                <h3>{{ trans('app.about_us') }}</h3>
                             </div>
                             <div class="jellywp_about_us_widget_wrapper">
                                 <p>{{ config('common.info.about') }}</p>

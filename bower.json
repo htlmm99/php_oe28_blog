@@ -16,6 +16,8 @@
     "tests"
   ],
   "dependencies": {
+    "Font-Awesome": "https://github.com/FortAwesome/Font-Awesome.git#^4.7.0",
+    "jquery": "^3.5.1",
     "Font-Awesome": "https://github.com/FortAwesome/Font-Awesome.git#^4.7.0"
   }
 }

@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['middleware' => 'locale'], function() {
+    Auth::routes();
     Route::group(['namespace' => 'Client'], function() {
         Route::get('/lang/{lang}', 'LangController@changeLanguage')->name('lang');
-        Route::get('/', 'HomeController@index');
+        Route::get('/home', 'HomeController@index')->middleware('auth')->name('home');
     });
 });
+
+
+
