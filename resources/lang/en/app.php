@@ -25,5 +25,8 @@ return [
     'post' => 'Post',
     'profile' => 'Profile',
     'author' => 'Author',
+    'your_phone' => 'Your phone',
+    'your_account' => 'Your Account',
+    'welcome' => 'Welcome',
     'copyright' => 'Copyright 2019 Jellywp. All Rights Reserved Powered by Jellywp',
 ];
