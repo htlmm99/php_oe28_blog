@@ -7,7 +7,6 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
-
 class LoginController extends Controller
 {
     /*
@@ -33,7 +32,6 @@ class LoginController extends Controller
     protected function redirectTo()
     {
         if (auth()->user()->role->name == config('common.role.admin')) {
-
             return route('admin');
         }
 

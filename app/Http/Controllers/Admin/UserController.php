@@ -9,13 +9,16 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-
 class UserController extends Controller
 {
     public function index($name)
     {
+        if (empty($name)) {
+            $name = config('common.role.user');
+        }
         $role = Role::where('name', $name)->first();
         $users = User::where('role_id', $role->id)->orderBy('username', 'asc')->paginate(config('common.paginate_default'));
+
         return view('admin.user', compact('users', 'name'));
     }
 
