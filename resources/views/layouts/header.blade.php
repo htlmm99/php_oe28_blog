@@ -17,6 +17,9 @@
                                 @csrf
                             </form>
                             <li class="menu-item menu-item-3602"><a href="{{ route('post.create') }}">{{ trans('app.post.create') }}<span class="border-menu"></span></a></li>
+                            @if (Auth::user()->role->name == config('common.role.admin'))
+                                <li class="menu-item menu-item-3602"><a href="{{ route('admin') }}">{{ trans('app.admin') }}<span class="border-menu"></span></a></li>
+                            @endif
                         </li>
                         @endif
                     </ul>

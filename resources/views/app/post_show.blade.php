@@ -12,6 +12,12 @@
                                 <div class="single_content_header jl_single_feature_above">
                                 </div>
                                 <div class="single_post_entry_content single_bellow_left_align">
+                                @if ($post->user->id == Auth::id())
+                                <a href="{{ route('post.edit', $post->id) }}">
+                                            <button class="btn float-right" type="submit" title="{{ trans('app.edit') }}">{{ trans('app.edit') }}
+                                            </button>
+                                </a>
+                                @endif
                                     <span class="meta-category-small single_meta_category"><a class="post-category-color-text" href="{{ route('category.show', $post->category->name) }}">{{ $post->category->name }}</a></span>
                                     <h1 class="single_post_title_main">{{ $post->title }}</h1>
                                     <span class="single-post-meta-wrapper">

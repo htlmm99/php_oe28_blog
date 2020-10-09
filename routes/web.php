@@ -32,9 +32,11 @@ Route::group(['middleware' => 'locale'], function() {
         Route::patch('/edit/{id}', 'UserController@editAdmin')->name('admin.edit');
         Route::delete('/user/{id}', 'UserController@destroy')->name('user.delete');
         Route::resource('/category' , 'CategoryController');
-        Route::patch('/post/{id}', 'PostController@accept')->name('admin.post.accept');
-        Route::patch('/post{id}', 'PostController@reject')->name('admin.post.reject');
+        Route::patch('/post/{id}/accept', 'PostController@accept')->name('admin.post.accept');
+        Route::patch('/post{id}/reject', 'PostController@reject')->name('admin.post.reject');
+        Route::patch('/post{id}/waiting', 'PostController@waiting')->name('admin.post.waiting');
         Route::get('/post', 'PostController@index')->name('admin.post');
+        Route::delete('/post/{id}', 'PostController@destroy')->name('admin.post.destroy');
     });
 
     Route::group([

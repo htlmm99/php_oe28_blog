@@ -11,6 +11,7 @@ use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Recusive;
 use App\Helpers\Process;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -19,10 +20,19 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::latest()->paginate(config('common.paginate_default'));
-        return view('admin.post', compact('posts'));
+        if (is_null($request->status)) {
+            $status = 'recent_posts';
+            $posts = Post::latest()->paginate(config('common.paginate_default'));
+        }
+        else {
+            $status = $request->status;
+            $posts = Post::where('status', $status)->orderBy('created_at', 'asc')->paginate(config('common.paginate_default'));
+            $status = $status==config('common.post.status_accepted') ? 'post.accepted' : ($status==config('common.post.status_waiting') ? 'post.waiting' : 'post.rejected');
+        }
+
+        return view('admin.post', compact('posts', 'status'));
     }
 
     /**
@@ -61,7 +71,7 @@ class PostController extends Controller
         $post = Post::create($post);
         $this->storeTags($post->id, $request->tag);
 
-        return redirect()->route('user')->with('message', trans('app.message.add_success'));
+        return redirect()->route('post.show', ['slug' => $post->slug])->with('message', trans('app.message.add_success'));
     }
 
     /**
@@ -83,7 +93,25 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $post = Post::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            return redirect()->to(url()->previous())->with('error', trans('app.message.fail'));
+        }
+        if (Auth::user()->role->name != config('common.role.admin') && Auth::id() != $post->user_id ) {
+            abort(403);
+        }
+        $tags = '';
+        foreach ($post->tags as $tag) {
+            $tags = $tag->name.',';
+        }
+        $categories = Category::all();
+        $recusive = new Recusive($categories);
+        $htmlOption = $recusive->categoryRecusive($parentId = '');
+
+        return view('user.post_edit', compact('post', 'tags', 'categories', 'htmlOption'));
+
     }
 
     /**
@@ -93,9 +121,33 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
-        //
+        try {
+            $post = Post::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            return redirect()->to(url()->previous())->with('error', trans('app.message.fail'));
+        }
+        if (Auth::user()->role->name != config('common.role.admin') && Auth::id() != $post->user_id ) {
+            abort(403);
+        }
+        $newPost = [
+            'title' => $request->title,
+            'slug' => $request->title,
+            'content' => Process::addDivToContent($request->content),
+            'category_id' => $request->category_id,
+        ];
+        if ($request->hasFile('thumbnail')) {
+            $fileName = $request->thumbnail->getClientOriginalName();
+            $request->thumbnail->move('storage/', $fileName);
+            $post['thumbnail'] = "storage/".$fileName;
+        }
+        $post->update($newPost);
+        $this->storeTags($post->id, $request->tag);
+
+        return redirect()->route('post.show', ['slug' => $post->slug])->with('message', trans('app.message.add_success'));
+
     }
 
     /**
@@ -106,17 +158,64 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        try {
+            $post = Post::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            return redirect()->route('admin.post')->with('error', trans('app.message.fail'));
+        }
+        if (Auth::user()->role->name != config('common.role.admin') && Auth::id() != $post->user_id) {
+            abort(403);
+        }
+        DB::transaction(function () use ($id, $post) {
+            $post->comments()->delete();
+            $post->votes()->delete();
+            DB::table('post_tag')->where('post_id', $id)->delete();
+            $post->delete();
+        });
+
+        return redirect()->to(url()->previous())->with('message', trans('app.message.delete_success'));
     }
 
-    public function reject()
-    {
 
+    public function waiting($id)
+    {
+        try {
+            $post = Post::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            return redirect()->route('admin.post')->with('error', trans('app.message.fail'));
+        }
+        $post->update(['status' => config('common.post.status_waiting')]);
+
+        return redirect()->route('admin.post', ['status' => config('common.post.status_waiting')])->with('message', trans('app.message.action_success'));
     }
 
-    public function accept()
+    public function reject($id)
     {
+        try {
+            $post = Post::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            return redirect()->route('admin.post')->with('error', trans('app.message.fail'));
+        }
+        $post->update(['status' => config('common.post.status_rejected')]);
 
+        return redirect()->route('admin.post', ['status' => config('common.post.status_rejected')])->with('message', trans('app.message.action_success'));
+    }
+
+    public function accept($id)
+    {
+        try {
+            $post = Post::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e) {
+            return redirect()->route('admin.post')->with('error', trans('app.message.fail'));
+        }
+        $post->update(['status' => config('common.post.status_accepted')]);
+
+        return redirect()->route('admin.post', ['status' => config('common.post.status_accepted')])->with('message', trans('app.message.action_success'));
     }
 
     public function storeTags($postId, $tags)

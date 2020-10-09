@@ -24,8 +24,8 @@
                 </a>
                 <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('category.index') }}">{{ trans('app.list_categories') }}</a>
-                        <a class="nav-link" href="{{ route('category.create') }}">{{ trans('app.add_categories') }}</a>
+                        <a class="nav-link" href="{{ route('category.index') }}">{{ trans('app.category.list_categories') }}</a>
+                        <a class="nav-link" href="{{ route('category.create') }}">{{ trans('app.category.add_category') }}</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
@@ -47,18 +47,11 @@
                 <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('admin.post') }}">{{ trans('app.recent_posts') }}</a>
-                        <a class="nav-link" href="">{{ trans('app.review_posts') }}</a>
+                        <a class="nav-link" href="{{ route('admin.post', ['status' => config('common.post.status_waiting')]) }}">{{ trans('app.post.waiting') }} {{ trans('app.posts') }}</a>
+                        <a class="nav-link" href="{{ route('admin.post', ['status' => config('common.post.status_accepted')]) }}">{{ trans('app.post.accepted') }} {{ trans('app.posts') }}</a>
+                        <a class="nav-link" href="{{ route('admin.post', ['status' => config('common.post.status_rejected')]) }}">{{ trans('app.post.rejected') }} {{ trans('app.posts') }}</a>
                     </nav>
                 </div>
-                <div class="sb-sidenav-menu-heading">Addons</div>
-                <a class="nav-link" href="charts.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                    Charts
-                </a>
-                <a class="nav-link" href="tables.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Tables
-                </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">
