@@ -32,36 +32,23 @@
                         <div>
                             <!-- data test -->
                             <ul class="feature-post-list recent-post-widget">
+                                @foreach($footerPost as $post)
                                 <li>
-                                    <a href="#" class="jl_small_format feature-image-link image_post featured-thumbnail" title="Round white dining table on brown hardwood">
-                                        <img src="http://jellywp.com/theme/disto/demo/wp-content/uploads/2019/02/roberto-nickson-1299738-unsplash-780x450.jpg" class="attachment-disto_small_feature size-disto_small_feature wp-post-image" alt="" />
+                                    <a href="{{ route('post.show', ['slug' => $post->slug]) }}" class="jl_small_format feature-image-link image_post featured-thumbnail">
+                                        <img src="{{ URL::asset($post->thumbnail) }}" class="attachment-disto_small_feature size-disto_small_feature wp-post-image" alt="{{ $post->slug }}" />
                                         <div class="background_over_image"></div>
                                     </a>
                                     <div class="item-details">
                                         <span class="meta-category-small">
-                                            <a class="post-category-color-text" style="background:#0015ff" href="#">Sports</a>
+                                            <a class="post-category-color-text" href="{{ route('category.client', $post->category->name) }}">{{ $post->category->name }}</a>
                                         </span>
-                                        <h3 class="feature-post-title"><a href="#">Round white dining table on brown hardwood</a></h3>
+                                        <h3 class="feature-post-title"><a href="{{ route('post.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a></h3>
                                         <span class="post-meta meta-main-img auto_image_with_date">
-                                            <span class="post-date"><i class="fa fa-clock-o"></i>Mar 10, 2019</span>
+                                            <span class="post-date"><i class="fa fa-clock-o"></i>{{ $post->created_at }}</span>
                                         </span>
                                     </div>
                                 </li>
-                                <li>
-                                    <a href="#" class="jl_small_format feature-image-link image_post featured-thumbnail" title="People are enjoy the job that they love">
-                                        <img width="120" height="120" src="http://jellywp.com/theme/disto/demo/wp-content/uploads/2019/02/roberto-nickson-1299738-unsplash-780x450.jpg" class="attachment-disto_small_feature size-disto_small_feature wp-post-image" alt="" />
-                                        <div class="background_over_image"></div>
-                                    </a>
-                                    <div class="item-details">
-                                        <span class="meta-category-small">
-                                            <a class="post-category-color-text" style="background:#0015ff" href="#">Business</a>
-                                        </span>
-                                        <h3 class="feature-post-title"><a href="#">People are enjoy the job that they love</a></h3>
-                                        <span class="post-meta meta-main-img auto_image_with_date">
-                                            <span class="post-date"><i class="fa fa-clock-o"></i>Dec 24, 2016</span>
-                                        </span>
-                                    </div>
-                                </li>
+                                @endforeach
                             </ul>
                             <!--end data test -->
                         </div>
@@ -76,14 +63,12 @@
                     </div>
                     <!-- data test -->
                     <ul>
+                        @foreach($footerCategory as $category)
                         <li class="cat-item cat-item-2">
-                            <a href="#" title="Sample category description goes here">Active</a>
-                            <span>11</span>
+                            <a href="{{ route('category.client', $category->slug) }}">{{ $category->name }}</a>
+                            <span>{{ $category->posts()->count() }}</span>
                         </li>
-                        <li class="cat-item cat-item-3">
-                            <a href="#" title="Sample category description goes here">Business</a>
-                            <span>10</span>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

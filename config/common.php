@@ -19,6 +19,7 @@ return [
     ],
     'category' => [
         'category_default' => 0,
+        'footer' => 5,
     ],
     'paginate_default' => 5,
     'post' => [
@@ -29,5 +30,6 @@ return [
         'paginate' => 9,
         'related_posts' => 4,
         'recent_author'=> 6,
+        'footer' => 2,
     ],
 ];

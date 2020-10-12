@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'asc')->paginate(config('common.post.paginate'));
+        $posts = Post::where('status', config('common.post.accepted'))->orderBy('created_at', 'asc')->with('user')->paginate(config('common.post.paginate'));
 
         return view('app.homepage', compact('posts'));
     }
@@ -42,5 +43,12 @@ class HomeController extends Controller
 
             return view('user.home', compact('author', 'posts', 'hotPosts'));
         }
+    }
+
+    public function category($slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+        $posts = Post::where('category_id', $category->id)->where('status', config('common.post.accepted'))->orderBy('created_at', 'asc')->with('user')->paginate(config('common.post.paginate'));
+        return view('app.category', compact('category', 'posts'));
     }
 }

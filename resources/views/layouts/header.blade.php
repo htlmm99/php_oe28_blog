@@ -58,19 +58,7 @@
                         <li class="menu-item menu-item-has-children">
                             <a href="#">{{ trans('app.categories') }}<span class="border-menu"></span></a>
                             <!-- Data test -->
-                            <ul class="sub-menu">
-                                <li class="menu-item menu-item-has-children">
-                                    <a href="">Quan diem<span class="border-menu"></span></a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item"><a href="post-layout-1.html" tppabs="http://jellywp.com/disto-preview/post-layout-1.html">Post layout 1<span class="border-menu"></span></a></li>
-                                    </ul></li>
-                                    <li class="menu-item menu-item-has-children"> <a href="#">Truyen cam hung<span class="border-menu"></span></a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item"><a href="post-format-1.html" tppabs="http://jellywp.com/disto-preview/post-format-1.html">Post format standard<span class="border-menu"></span></a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item"><a href="author.html" >Chinh tri<span class="border-menu"></span></a></li>
-                            </ul>
+                            {!! $htmlMenu !!}
                             <!--end data test -->
                         </li>
                         <li class="menu-item"><a href="gaming.html" tppabs="http://jellywp.com/disto-preview/gaming.html">{{ trans('app.top_members') }}<span class="border-menu"></span></a></li>

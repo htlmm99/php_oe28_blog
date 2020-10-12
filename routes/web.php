@@ -21,6 +21,7 @@ Route::group(['middleware' => 'locale'], function() {
         Route::get('/contact', 'HomeController@contact')->name('contact');
         Route::get('/post', 'PostController@show')->name('post.show');
         Route::get('/user/{emailName}', 'HomeController@userHome')->name('user.home');
+        Route::get('/category/{slug}', 'HomeController@category')->name('category.client');
     });
     Route::group([
     'namespace' => 'Admin',
