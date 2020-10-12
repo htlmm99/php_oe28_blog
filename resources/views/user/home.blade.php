@@ -21,7 +21,7 @@
                                         <div class="large_post_content">
                                             <h3 class="image-post-title"><a href="{{ route('post.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a></h3>
                                             <span class="jl_post_meta" ><span class="jl_author_img_w"><a href="{{ route('user.home', explode('@',$post->user->email)[0]) }}" title="{{ $post->user->username }}" rel="">{{ $post->user->username }}</a></span><span class="post-date"><i class="fa fa-clock-o"></i>{{ $post->created_at }}</span></span>
-                                            @if ($author->id == Auth::user()->id)
+                                            @if (Auth::check() && $author->id == Auth::user()->id)
                                             <span class="meta-category-small">
                                                 {{ $post->status==config('common.post.status_accepted') ? trans('app.post.accepted') : ($post->status==config('common.post.status_waiting') ? trans('app.post.waiting') :
                                                 trans('app.post.rejected')) }}

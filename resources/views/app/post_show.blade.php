@@ -12,12 +12,12 @@
                                 <div class="single_content_header jl_single_feature_above">
                                 </div>
                                 <div class="single_post_entry_content single_bellow_left_align">
-                                @if ($post->user->id == Auth::id())
-                                <a href="{{ route('post.edit', $post->id) }}">
-                                            <button class="btn float-right" type="submit" title="{{ trans('app.edit') }}">{{ trans('app.edit') }}
-                                            </button>
-                                </a>
-                                @endif
+                                    @if ($post->user->id == Auth::id())
+                                    <a href="{{ route('post.edit', $post->id) }}">
+                                        <button class="btn float-right" type="submit" title="{{ trans('app.edit') }}">{{ trans('app.edit') }}
+                                        </button>
+                                    </a>
+                                    @endif
                                     <span class="meta-category-small single_meta_category"><a class="post-category-color-text" href="{{ route('category.show', $post->category->name) }}">{{ $post->category->name }}</a></span>
                                     <h1 class="single_post_title_main">{{ $post->title }}</h1>
                                     <span class="single-post-meta-wrapper">
@@ -82,61 +82,105 @@
                             </div>
                             <!-- comment -->
                             <div id="respond" class="comment-respond">
-                                <h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="#" style="display:none;">Cancel reply</a></small></h3>
-                                <form action="#" method="post" id="commentform" class="comment-form">
-                                    <p class="comment-notes">
-                                        <span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span>
-                                    </p>
+                                <h3 id="reply-title" class="comment-reply-title"> {{ trans('app.comment') }}</h3>
+                                <form id="comment-post" class="comment-form" action="">
+                                    @csrf
+                                    <input type="text" name="user_id" id="user_id" value="{{ Auth::id() }}" hidden="true">
+                                    <input type="text" name="post_id" id="post_id" value="{{ $post->id }}" hidden="true">
                                     <p class="comment-form-comment">
-                                        <textarea class="u-full-width" id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="Comment"></textarea>
+                                        <textarea class="u-full-width" id="content" name="content" aria-required="true" placeholder="Comment"></textarea>
                                     </p>
-                                    <div class="form-fields row">
-                                        <span class="comment-form-author col-md-4"><input id="author" name="author" type="text" value="" size="30" placeholder="Fullname"></span>
-                                        <span class="comment-form-email col-md-4"><input id="email" name="email" type="text" value="" size="30" placeholder="Email Address"></span>
-                                        <span class="comment-form-url col-md-4"><input id="url" name="url" type="text" value="" size="30" placeholder="Web URL"></span>
-                                    </div>
                                     <p class="form-submit">
-                                        <input name="submit" type="submit" id="submit" class="submit" value="Post Comment">
+                                        <input  name="submit" type="submit" id="submit" class="submit" value="{{ trans('app.comment') }}">
                                     </p>
                                 </form>
-                                </div><!-- #respond -->
+                                <ul class="comment-list">
+                                    <li id="" class="comment byuser comment-author-meks2 even thread-even depth-1 parent">
+                                        <article id="" class="comment-body-fix">
+                                            <footer class="comment-meta">
+                                                <div class="comment-author vcard">
+                                                    <b class="fn"><a href="" rel="" class="url">author</a></b>
+                                                </div>
+                                                <div class="comment-metadata">
+                                                    <time datetime="2019-02-07T10:56:14+00:00">February 7, 2019 at 10:56 am</time>
+                                                </div>
+                                            </footer>
+                                            <div class="comment-content-fix">
+                                                <p class="comment-p-fix">Hey Jessica, I really like how you tackled this topic. Great stuff!</p>
+                                            </div>
+                                            <div class="reply-fix">
+                                                <form action="#" method="post" id="commentform" class="comment-form">
+                                                    <a class="comment-reply-link" data-commentid="25" data-postid="177" data-belowelement="div-comment-25" data-respondelement="respond">Reply</a>
+                                                    <p class="comment-form-comment">
+                                                        <input class="u-full-width" id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="Comment" />
+                                                    </p>
+                                                </form>
+                                            </div>
+                                        </article>
+                                        <ul class="children">
+                                            <li id="comment-30" class="comment byuser comment-author-meks3 bypostauthor odd alt depth-2">
+                                                <article id="" class="comment-body-fix">
+                                                    <footer class="comment-meta">
+                                                        <div class="comment-author vcard">
+                                                            <b class="fn"><a href="" rel="" class="url">author</a></b>
+                                                        </div>
+                                                        <div class="comment-metadata">
+                                                            <time datetime="2019-02-07T10:56:14+00:00">February 7, 2019 at 10:56 am</time>
+                                                        </div>
+                                                    </footer>
+                                                    <div class="comment-content-fix">
+                                                        <p class="comment-p-fix">Hey Jessica, I really like how you tackled this topic. Great stuff!</p>
+                                                    </div>
+                                                    <div class="reply-fix">
+                                                        <form action="#" method="post" id="commentform" class="comment-form">
+                                                            <a class="comment-reply-link" data-commentid="25" data-postid="177" data-belowelement="div-comment-25" data-respondelement="respond">Reply</a>
+                                                            <p class="comment-form-comment">
+                                                                <input class="u-full-width" id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="Comment" />
+                                                            </p>
+                                                        </form>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <!-- end post -->
-                        <div class="brack_space"></div>
                     </div>
+                    <div class="brack_space"></div>
                 </div>
-                <div class="col-md-4" id="sidebar">
-                    <div id="disto_recent_post_widget-7" class="widget post_list_widget">
-                        <div class="widget-title">
-                            <h2>{{ trans('app.recent_posts') }}</h2>
-                        </div>
-                        <div>
-                            <ul class="feature-post-list recent-post-widget">
-                                @foreach($recentPosts as $recentPost)
-                                <li>
-                                    <a href="{{ route('post.show', ['slug' => $recentPost->slug]) }}" class="jl_small_format feature-image-link image_post featured-thumbnail" title="{{ $recentPost->title }}">
-                                        <img src="{{ URL::asset($recentPost->thumbnail) }}" alt="{{ $recentPost->slug }}" />
-                                        <div class="background_over_image"></div>
-                                    </a>
-                                    <div class="item-details">
-                                        <span class="meta-category-small"><a class="post-category-color-text" href="#">{{ $recentPost->category->name }}</a></span>
-                                        <h3 class="feature-post-title"><a href="{{ route('post.show', ['slug' => $recentPost->slug]) }}">{{ $recentPost->title }}</a></h3>
-                                        <span class="post-meta meta-main-img auto_image_with_date">
-                                            <span class="post-date"><i class="fa fa-clock-o"></i>{{ $recentPost->created_at }}</span>
-                                        </span>
-                                    </div>
-                                    <div class="brack_space"></div>
-                                </li>
-                                <span class="jl_none_space"></span>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <span class="jl_none_space"></span>
+            </div>
+            <div class="col-md-4" id="sidebar">
+                <div id="disto_recent_post_widget-7" class="widget post_list_widget">
+                    <div class="widget-title">
+                        <h2>{{ trans('app.recent_posts') }}</h2>
                     </div>
+                    <div>
+                        <ul class="feature-post-list recent-post-widget">
+                            @foreach($recentPosts as $recentPost)
+                            <li>
+                                <a href="{{ route('post.show', ['slug' => $recentPost->slug]) }}" class="jl_small_format feature-image-link image_post featured-thumbnail" title="{{ $recentPost->title }}">
+                                    <img src="{{ URL::asset($recentPost->thumbnail) }}" alt="{{ $recentPost->slug }}" />
+                                    <div class="background_over_image"></div>
+                                </a>
+                                <div class="item-details">
+                                    <span class="meta-category-small"><a class="post-category-color-text" href="#">{{ $recentPost->category->name }}</a></span>
+                                    <h3 class="feature-post-title"><a href="{{ route('post.show', ['slug' => $recentPost->slug]) }}">{{ $recentPost->title }}</a></h3>
+                                    <span class="post-meta meta-main-img auto_image_with_date">
+                                        <span class="post-date"><i class="fa fa-clock-o"></i>{{ $recentPost->created_at }}</span>
+                                    </span>
+                                </div>
+                                <div class="brack_space"></div>
+                            </li>
+                            <span class="jl_none_space"></span>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <span class="jl_none_space"></span>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </section>
 @endsection

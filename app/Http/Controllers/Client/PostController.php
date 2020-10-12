@@ -21,8 +21,8 @@ class PostController extends Controller
         else {
             $post->load('tags');
             $author = $post->user;
-            $relatedPosts = $post->category->posts()->where('id', '!=', $post->id)->orderBy('created_at', 'asc')->take(config('common.post.related_posts'))->get();
-            $recentPosts = $author->posts()->where('id', '!=', $post->id)->orderBy('created_at', 'asc')->take(config('common.post.recent_author'))->get();
+            $relatedPosts = $post->category->posts()->where('id', '!=', $post->id)->where('status', config('common.post.status_accepted'))->orderBy('created_at', 'asc')->take(config('common.post.related_posts'))->get();
+            $recentPosts = $author->posts()->where('id', '!=', $post->id)->where('status', config('common.post.status_accepted'))->orderBy('created_at', 'asc')->take(config('common.post.recent_author'))->get();
 
             return view('app.post_show', compact('post', 'relatedPosts', 'recentPosts', 'author'));
         }
