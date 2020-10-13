@@ -14,6 +14,6 @@ return [
     'role' => [
         'admin' => 'admin',
         'user' => 'user',
-        'role_default' => 0,
+        'role_default' => 1,
     ],
 ];
