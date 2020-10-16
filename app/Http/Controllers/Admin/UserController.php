@@ -17,7 +17,7 @@ class UserController extends Controller
             $name = config('common.role.user');
         }
         $role = Role::where('name', $name)->first();
-        $users = User::where('role_id', $role->id)->orderBy('username', 'asc')->paginate(config('common.paginate_default'));
+        $users = $role->users()->orderBy('username', 'asc')->paginate(config('common.paginate_default'));
 
         return view('admin.user', compact('users', 'name'));
     }
@@ -25,9 +25,8 @@ class UserController extends Controller
     public function editAdmin(Request $request, $id)
     {
         try {
-        $user = User::findOrFail($id);
-        }
-        catch (ModelNotFoundException $e) {
+            $user = User::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.index', config('common.role.user'))->with('error', trans('app.message.fail'));
         }
         $newRole = $request->role;
@@ -35,19 +34,16 @@ class UserController extends Controller
         $user->update(['role_id' => $role->id]);
         if ($newRole == config('common.role.admin')) {
             return redirect()->route('admin.index', config('common.role.admin'))->with('message', trans('app.message.edit_success'));
-        }
-        else {
+        } else {
             return redirect()->route('admin.index', config('common.role.user'))->with('message', trans('app.message.edit_success'));
         }
     }
-
 
     public function edit()
     {
         try {
             $user = User::findOrFail(Auth()->user()->id);
-        }
-        catch (ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             return redirect()->route('user.profile')->with('error', trans('message.fail'));
         }
 
@@ -69,34 +65,30 @@ class UserController extends Controller
                 $request->validate([
                     'email' => ['unique:users'],
                 ]);
-            }
-            else {
-                if ($request->changePassword != config('common.user.change_pass'))
-                {
+            } else {
+                if ($request->changePassword != config('common.user.change_pass')) {
                     $user->update([
-                    'username' => $request->username,
-                    'email' => $request->email,
-                    'phone' => $request->phone,
+                        'username' => $request->username,
+                        'email' => $request->email,
+                        'phone' => $request->phone,
                     ]);
-                }
-                else {
+                } else {
                     $oldPass = $request->oldPassword;
                     $checkPassword = User::where('email', $request->email)->where('password', bcrypt($oldPass))->first();
                     if ($checkPassword != null) {
                         return redirect()->route('user.profile')->error('oldPassword', trans('app.message.fail'));
                     }
                     $user->update([
-                    'username' => $request->username,
-                    'email' => $request->email,
-                    'phone' => $request->phone,
-                    'password' => $request->password,
+                        'username' => $request->username,
+                        'email' => $request->email,
+                        'phone' => $request->phone,
+                        'password' => $request->password,
                     ]);
                 }
 
             return redirect()->route('user.profile')->with('message', trans('app.message.edit_success'));
             }
-        }
-        catch (ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             return redirect()->route('user.profile')->with('error', trans('app.message.fail'));
         }
     }
@@ -105,8 +97,7 @@ class UserController extends Controller
     {
         try {
             $user = User::findOrFail($id);
-        }
-        catch (ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.index', 'user')->with('error', trans('app.message.fail'));
         }
         $user->delete();

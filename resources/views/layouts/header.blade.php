@@ -18,9 +18,9 @@
                                         @csrf
                                     </form>
                                 </li>
-                                    @if (Auth()->user()->role->name == config('common.role.admin'))
-                                        <li class="menu-item menu-item-3602"><a href="{{ route('admin') }}">{{ trans('app.admin') }}<span class="border-menu"></span></a></li>
-                                    @endif
+                                @if (Auth()->user()->role->name == config('common.role.admin'))
+                                <li class="menu-item menu-item-3602"><a href="{{ route('admin') }}">{{ trans('app.admin') }}<span class="border-menu"></span></a></li>
+                                @endif
                             @endif
                         </ul>
                     </div>
@@ -63,8 +63,9 @@
                     <!-- end main menu -->
                     <div class="search_header_menu col-md-4">
                         <form method="get" class="searchform_theme" action="#">
-                            <input type="text" placeholder="{{ trans('app.search') }}" value="" name="s" class="search_btn">
-                            <button id="center" type="submit" class="button"><i class="fa fa-search float-left"></i></button>
+                            <input type="text" placeholder="{{ trans('app.search') }}" value="" name="s" class="search_btn" />
+                            <button type="submit" class="button"><i class="fa fa-search"></i>
+                            </button>
                         </form>
                     </div>
                 </div>

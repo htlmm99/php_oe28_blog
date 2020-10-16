@@ -9,6 +9,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return redirect()->route('admin.index', 'user');
+        return view('admin.dashboard');
     }
 }

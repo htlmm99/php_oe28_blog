@@ -37,7 +37,6 @@ class LoginController extends Controller
 
         return route('home');
     }
-
     /**
      * Create a new controller instance.
      *
