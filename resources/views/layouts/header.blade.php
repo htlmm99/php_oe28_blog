@@ -8,16 +8,19 @@
                         <ul id="jl_top_menu" class="jl_main_menu">
                             <li class="menu-item menu-item-home current-menu-item page_item page-item-4212 current_page_item menu-item-4461"><a href="{{ route('home') }}" aria-current="page">{{ trans('app.home') }}<span class="border-menu"></span></a></li>
                             @if (!Auth::check())
-                            <li class="menu-item menu-item-3602"><a href="{{ route('login') }}">{{ trans('auth.login') }}<span class="border-menu"></span></a></li>
-                            <li class="menu-item menu-item-3606"><a href="{{ route('register') }}">{{ trans('auth.register') }}<span class="border-menu"></span></a></li>
+                                <li class="menu-item menu-item-3602"><a href="{{ route('login') }}">{{ trans('auth.login') }}<span class="border-menu"></span></a></li>
+                                <li class="menu-item menu-item-3606"><a href="{{ route('register') }}">{{ trans('auth.register') }}<span class="border-menu"></span></a></li>
                             @else
-                            <li class="menu-item menu-item-3602"><a href="">{{ trans('app.welcome') }}  : {{ Auth()->user()->username}}<span class="border-menu"></span></a></li>
-                            <li class="menu-item menu-item-3606">
-                                <a id='btn-logout' >{{ trans('auth.logout') }}<span class="border-menu"></span></a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                </form>
-                            </li>
+                                <li class="menu-item menu-item-3602"><a href="">{{ trans('app.welcome') }}  : {{ Auth()->user()->username}}<span class="border-menu"></span></a></li>
+                                <li class="menu-item menu-item-3606">
+                                    <a id='btn-logout' href="">{{ trans('auth.logout') }}<span class="border-menu"></span></a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                    </form>
+                                </li>
+                                @if (Auth()->user()->role->name == config('common.role.admin'))
+                                <li class="menu-item menu-item-3602"><a href="{{ route('admin') }}">{{ trans('app.admin') }}<span class="border-menu"></span></a></li>
+                                @endif
                             @endif
                         </ul>
                     </div>
@@ -60,8 +63,9 @@
                     <!-- end main menu -->
                     <div class="search_header_menu col-md-4">
                         <form method="get" class="searchform_theme" action="#">
-                            <input type="text" placeholder="{{ trans('app.search') }}" value="" name="s" class="search_btn">
-                            <button id="center" type="submit" class="button"><i class="fa fa-search float-left"></i></button>
+                            <input type="text" placeholder="{{ trans('app.search') }}" value="" name="s" class="search_btn" />
+                            <button type="submit" class="button"><i class="fa fa-search"></i>
+                            </button>
                         </form>
                     </div>
                 </div>
