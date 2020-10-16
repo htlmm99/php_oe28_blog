@@ -16,7 +16,7 @@ Route::group(['middleware' => 'locale'], function() {
     Auth::routes();
     Route::group(['namespace' => 'Client'], function() {
         Route::get('/lang/{lang}', 'LangController@changeLanguage')->name('lang');
-        Route::get('/home', 'HomeController@index')->middleware('auth')->name('home');
+        Route::get('/home', 'HomeController@index')->name('home');
     });
 });
 Route::group([

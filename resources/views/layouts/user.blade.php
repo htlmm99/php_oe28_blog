@@ -7,7 +7,7 @@
             <div class="col-md-12 main_title_col">
               <div class="jl_cat_mid_title">
                 <h1 class="categories-title title">{{ trans('app.author') }}</h1>
-                <h1 class="categories-title title"></h1>
+                <h1 class="categories-title title">{{ $user->username ?? '' }}</h1>
               </div>
             </div>
           </div>

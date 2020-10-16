@@ -13,6 +13,9 @@ class UserController extends Controller
 {
     public function index($name)
     {
+        if (empty($name)) {
+            $name = config('common.role.user');
+        }
         $role = Role::where('name', $name)->first();
         $users = $role->users()->orderBy('username', 'asc')->paginate(config('common.paginate_default'));
 

@@ -11,9 +11,9 @@
                                 <li class="menu-item menu-item-3602"><a href="{{ route('login') }}">{{ trans('auth.login') }}<span class="border-menu"></span></a></li>
                                 <li class="menu-item menu-item-3606"><a href="{{ route('register') }}">{{ trans('auth.register') }}<span class="border-menu"></span></a></li>
                             @else
-                                <li class="menu-item menu-item-3602"><a href="">{{ trans('app.welcome') }}  : {{ Auth()->user()->username}}<span class="border-menu"></span></a></li>
+                                <li class="menu-item menu-item-3602"><a href="{{ route('user.profile') }}">{{ trans('app.welcome') }}  : {{ Auth()->user()->username}}<span class="border-menu"></span></a></li>
                                 <li class="menu-item menu-item-3606">
-                                    <a id='btn-logout' href="">{{ trans('auth.logout') }}<span class="border-menu"></span></a>
+                                    <a id='btn-logout'>{{ trans('auth.logout') }}<span class="border-menu"></span></a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                     </form>
