@@ -61,4 +61,12 @@ return [
         'category_name' => 'Tên danh mục',
         'category_parent' => 'Danh mục cha',
     ],
+    'comment' => 'Bình luận',
+    'of' => 'của',
+    'admin' => 'Admin',
+    'show' => 'Hiển thị',
+    'follow' => 'Theo dõi',
+    'following' => 'Đang theo dõi',
+    'follower' => 'Người theo dõi',
+    'you_need_login' => 'Bạn cần phải đăng nhập',
 ];

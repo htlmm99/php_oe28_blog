@@ -22,6 +22,8 @@ Route::group(['middleware' => 'locale'], function() {
         Route::get('/post', 'PostController@show')->name('post.show');
         Route::get('/user/{emailName}', 'HomeController@userHome')->name('user.home');
         Route::get('/category/{slug}', 'HomeController@category')->name('category.client');
+        Route::get('/user/{emailName}/follower', 'HomeController@userFollower')->name('user.follower');
+        Route::get('/user/{emailName}/following', 'HomeController@userFollowing')->name('user.following');
     });
     Route::group([
     'namespace' => 'Admin',
@@ -50,6 +52,7 @@ Route::group(['middleware' => 'locale'], function() {
         Route::get('/foryou', 'UserController@index')->name('user.foryou');
         Route::resource('/post' , 'PostController')->except('show');
         Route::resource('/comment', 'CommentController');
+        Route::post('/follow', 'FollowController@follow')->name('user.follow');
     });
 });
 

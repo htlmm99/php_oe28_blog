@@ -5,42 +5,42 @@
         <div class="row">
             <div class="col-md-8 grid-sidebar" id="content">
                 <div class="jl_wrapper_cat">
-                    <div id="" class="pagination_infinite_style_cat ">
-                        @foreach($posts as $post)
-                        <div class="box jl_grid_layout1 blog_grid_post_style post-4761 post type-post status-publish format-standard has-post-thumbnail hentry category-sports">
-                            <div class="post_grid_content_wrapper">
-                                <div class="image-post-thumb">
-                                    <a href="{{ route('post.show', ['slug' => $post->slug]) }}" class="link_image featured-thumbnail" title="{{ $post->title }}">
-                                        <img src=" {{ URL::asset($post->thumbnail) }}" class="attachment-disto_large_feature_image size-disto_large_feature_image wp-post-image" alt="{{ $post->slug }}" >
-                                        <div class="background_over_image"></div>
-                                    </a>
-                                    <span class="meta-category-small"><a class="post-category-color-text" href="{{ route('category.show', $post->category->name) }}">{{ $post->category->name }}</a></span>
-                                </div>
-                                <div class="post-entry-content">
-                                    <div class="post-entry-content-wrapper">
-                                        <div class="large_post_content">
-                                            <h3 class="image-post-title"><a href="{{ route('post.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a></h3>
-                                            <span class="jl_post_meta" ><span class="jl_author_img_w"><a href="{{ route('user.home', explode('@',$post->user->email)[0]) }}" title="{{ $post->user->username }}" rel="">{{ $post->user->username }}</a></span><span class="post-date"><i class="fa fa-clock-o"></i>{{ $post->created_at }}</span></span>
-                                            @if (Auth::check() && $author->id == Auth::user()->id)
-                                            <span class="meta-category-small">
-                                                {{ $post->status==config('common.post.status_accepted') ? trans('app.post.accepted') : ($post->status==config('common.post.status_waiting') ? trans('app.post.waiting') :
-                                                trans('app.post.rejected')) }}
-                                            </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                    {{ $posts->links('vendor.pagination.default') }}
+                    <h4>{{ trans('app.following') }}</h4>
+                    <table class="table">
+                        <tbody>
+                            @foreach($followings as $following)
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><a href="{{ route('user.home', explode('@',$following->email)[0]) }}">{{ $following->username }}</a></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><div class="index">
+                                    <form action="{{ route('user.follow') }}" method="post" id="followForm" class="followForm">
+                                        @csrf
+                                        <a id="follower" class="btn btn-round btn-default btn-follow-fix follower-fix" hidden="true">
+                                        </a>
+                                        <input id="author_id" name="author_id" value="{{ $author->id }}" hidden="true" />
+                                        <input id="following_id" name="following_id" value="{{ Auth::id() }}" hidden="true" />
+                                        <input id="checkLogin" name="checkLogin" value="{{ Auth::check() }}" hidden="true" />
+                                        <input id="youNeedLogin" name="youNeedLogin" value="{{ trans('app.you_need_login') }}" hidden="true" />
+                                        @if($checkFollow)
+                                        <button type="submit" class="btn btn-primary btn-follow-fix1 follower-fix">{{ trans('app.following') }}</button>
+                                        @else
+                                        <button type="submit" class="btn btn-primary btn-follow-fix1 follower-fix">{{ trans('app.follow') }}</button>
+                                        @endif
+                                    </form>
+                                </div></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
                 <div class="brack_space"></div>
             </div>
             <div class="col-md-4" id="sidebar">
                 <div class="statistic clearfix widget post_list_widget follow-fix">
-                     @if($author->id != Auth::id())
+                    @if($author->id != Auth::id())
                     <div class="index">
                         <form action="{{ route('user.follow') }}" method="post" id="followForm" class="followForm">
                             @csrf
@@ -61,7 +61,7 @@
                     @endif
                     <div class="index">
                         <span class="count">{{ $author->followers()->count() }}</span>
-                        <h5 class="follower-fix"><a href="{{ route('user.follower', explode('@',$author->email)[0]) }}">{{ trans('app.follower') }}</a></h5>
+                        <a class="follower-fix" href="{{ route('user.follower', explode('@',$author->email)[0]) }}"><h5 class="follower-fix">{{ trans('app.follower') }}</h5></a>
                     </div>
                     <div class="index">
                         <span class="count">{{ $author->following()->count() }}</span>

@@ -17,6 +17,7 @@ class UserController extends Controller
     {
         $role = Role::where('name', $name)->first();
         $users = User::where('role_id', $role->id)->orderBy('username', 'asc')->paginate(config('common.paginate_default'));
+
         return view('admin.user', compact('users', 'name'));
     }
 
@@ -107,7 +108,15 @@ class UserController extends Controller
         catch (ModelNotFoundException $e) {
             return redirect()->route('admin.index', 'user')->with('error', trans('app.message.fail'));
         }
-        $user->delete();
+        DB::transaction(function () use ($user) {
+            $user->follwers()->detach();
+            $user->following()->detach();
+            $user->posts()->delete();
+            $user->comments()->delete();
+            $user->votes()->delete();
+            $users->postFavorites()->detach();
+            $user->delete();
+        });
 
         return redirect()->route('admin.index', 'user')->with('message', trans('app.message.delete_success'));
     }
